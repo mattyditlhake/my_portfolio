@@ -1,0 +1,52 @@
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.sqlite3
+*.db
+*.egg-info/
+pip-wheel-metadata/
+*.egg
+.pytest_cache/
+htmlcov/
+.DS_Store
+*.log
+*.swp
+*.swo
+*.tmp
+*.bak
+
+# Environment files
+.env
+client_secrets.json
+temp_uploads/
+
+# VS Code settings
+.vscode/
+*.code-workspace
+
+# macOS
+.AppleDouble
+.LSOverride
+
+# JetBrains
+.idea/
+
+# Python bytecode cache
+__pycache__/
+*/__pycache__/
+
+# Distribution / packaging
+build/
+dist/
+
+# Coverage
+.coverage
+.coverage.*
+coverage.xml
+
+# Jupyter
+.ipynb_checkpoints/
