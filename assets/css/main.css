@@ -4301,3 +4301,62 @@ section,
 .starter-section {
   /* Add your styles here */
 }
+
+/*--------------------------------------------------------------
+# Contact Privacy Reveal
+--------------------------------------------------------------*/
+.reveal-on-hover {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.5em;
+  cursor: help;
+  outline: none;
+}
+
+.reveal-on-hover .reveal-value,
+.about .content-wrapper .details-grid .detail-item .detail-content .reveal-on-hover .reveal-value,
+.contact .info-item .reveal-on-hover .reveal-value,
+.footer .footer-contact .reveal-on-hover .reveal-value {
+  display: none !important;
+}
+
+.reveal-on-hover .reveal-placeholder,
+.about .content-wrapper .details-grid .detail-item .detail-content .reveal-on-hover .reveal-placeholder,
+.contact .info-item .reveal-on-hover .reveal-placeholder,
+.footer .footer-contact .reveal-on-hover .reveal-placeholder {
+  display: inline !important;
+  color: color-mix(in srgb, var(--default-color), transparent 35%);
+  border-bottom: 1px dashed color-mix(in srgb, var(--accent-color), transparent 35%);
+  letter-spacing: 1px;
+}
+
+.reveal-on-hover:hover .reveal-placeholder,
+.reveal-on-hover:focus .reveal-placeholder,
+.reveal-on-hover:focus-within .reveal-placeholder,
+.about .content-wrapper .details-grid .detail-item .detail-content .reveal-on-hover:hover .reveal-placeholder,
+.about .content-wrapper .details-grid .detail-item .detail-content .reveal-on-hover:focus .reveal-placeholder,
+.contact .info-item .reveal-on-hover:hover .reveal-placeholder,
+.contact .info-item .reveal-on-hover:focus .reveal-placeholder,
+.footer .footer-contact .reveal-on-hover:hover .reveal-placeholder,
+.footer .footer-contact .reveal-on-hover:focus .reveal-placeholder {
+  display: none !important;
+}
+
+.reveal-on-hover:hover .reveal-value,
+.reveal-on-hover:focus .reveal-value,
+.reveal-on-hover:focus-within .reveal-value,
+.about .content-wrapper .details-grid .detail-item .detail-content .reveal-on-hover:hover .reveal-value,
+.about .content-wrapper .details-grid .detail-item .detail-content .reveal-on-hover:focus .reveal-value,
+.contact .info-item .reveal-on-hover:hover .reveal-value,
+.contact .info-item .reveal-on-hover:focus .reveal-value,
+.footer .footer-contact .reveal-on-hover:hover .reveal-value,
+.footer .footer-contact .reveal-on-hover:focus .reveal-value {
+  display: inline !important;
+  color: var(--heading-color);
+  letter-spacing: 0;
+}
+
+.reveal-on-hover:focus {
+  border-radius: 4px;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-color), transparent 65%);
+}
