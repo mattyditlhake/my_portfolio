@@ -1389,10 +1389,90 @@ section,
   margin: 0;
 }
 
+.resume .experience-section .experience-timeline {
+  position: relative;
+  padding-left: 2.5rem;
+}
+
 .resume .experience-section .experience-cards {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 3rem;
+  position: relative;
+}
+
+.resume .experience-section .experience-cards::before {
+  content: "";
+  position: absolute;
+  left: -1.5rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--accent-color), color-mix(in srgb, var(--accent-color), transparent 50%));
+}
+
+.resume .experience-section .experience-cards .experience-item {
+  position: relative;
+}
+
+.resume .experience-section .experience-cards .experience-item .timeline-marker {
+  position: absolute;
+  left: -3.2rem;
+  top: 0;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, var(--accent-color), color-mix(in srgb, var(--accent-color), #6c5ce7 20%));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 4px solid var(--background-color);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-color), transparent 80%);
+  z-index: 2;
+}
+
+.resume .experience-section .experience-cards .experience-item .timeline-marker i {
+  font-size: 1.2rem;
+  color: var(--contrast-color);
+}
+
+.resume .experience-section .experience-cards .experience-item .timeline-marker.company-coin {
+  perspective: 700px;
+}
+
+.resume .experience-section .experience-cards .experience-item .timeline-marker.company-coin .coin-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backface-visibility: hidden;
+  transition: transform 0.65s ease;
+}
+
+.resume .experience-section .experience-cards .experience-item .timeline-marker.company-coin .coin-front {
+  transform: rotateY(0deg);
+}
+
+.resume .experience-section .experience-cards .experience-item .timeline-marker.company-coin .coin-back {
+  background: var(--surface-color);
+  transform: rotateY(180deg);
+  overflow: hidden;
+}
+
+.resume .experience-section .experience-cards .experience-item .timeline-marker.company-coin .coin-back img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.resume .experience-section .experience-cards .experience-item .timeline-marker.company-coin:hover .coin-front {
+  transform: rotateY(180deg);
+}
+
+.resume .experience-section .experience-cards .experience-item .timeline-marker.company-coin:hover .coin-back {
+  transform: rotateY(360deg);
 }
 
 .resume .experience-section .experience-cards .exp-card {
@@ -1402,7 +1482,7 @@ section,
   border: 2px solid color-mix(in srgb, var(--default-color), transparent 95%);
   transition: all 0.3s ease;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .resume .experience-section .experience-cards .exp-card::before {
@@ -1413,18 +1493,21 @@ section,
   right: 0;
   height: 4px;
   background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
-  transform: translateX(-100%);
-  transition: transform 0.3s ease;
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .resume .experience-section .experience-cards .exp-card:hover {
-  transform: translateY(-5px);
+  transform: translateX(5px);
   border-color: color-mix(in srgb, var(--accent-color), transparent 80%);
   box-shadow: 0 15px 45px color-mix(in srgb, var(--default-color), transparent 85%);
 }
 
 .resume .experience-section .experience-cards .exp-card:hover::before {
-  transform: translateX(0);
+  opacity: 1;
+  transform: scaleX(1);
 }
 
 .resume .experience-section .experience-cards .exp-card.featured {
@@ -1433,40 +1516,20 @@ section,
 }
 
 .resume .experience-section .experience-cards .exp-card.featured::before {
-  background: linear-gradient(90deg, var(--accent-color), color-mix(in srgb, var(--accent-color), #6c5ce7 20%), var(--accent-color));
+  background: linear-gradient(90deg, transparent, var(--accent-color), color-mix(in srgb, var(--accent-color), #6c5ce7 20%), transparent);
 }
 
-.resume .experience-section .experience-cards .exp-card .card-header {
+.resume .experience-section .experience-cards .exp-card .card-body .role-heading {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.5rem;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
 }
 
-.resume .experience-section .experience-cards .exp-card .card-header .company-logo {
-  width: 50px;
-  height: 50px;
-  background: linear-gradient(135deg, var(--accent-color), color-mix(in srgb, var(--accent-color), #6c5ce7 20%));
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.resume .experience-section .experience-cards .exp-card .card-header .company-logo i {
-  font-size: 1.3rem;
-  color: var(--contrast-color);
-}
-
-.resume .experience-section .experience-cards .exp-card .card-header .period-badge {
-  background: color-mix(in srgb, var(--accent-color), transparent 85%);
-  color: var(--accent-color);
-  padding: 0.4rem 1rem;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+.resume .experience-section .experience-cards .exp-card .card-body .role-heading h3 {
+  margin-bottom: 0;
 }
 
 .resume .experience-section .experience-cards .exp-card .card-body h3 {
@@ -1520,32 +1583,38 @@ section,
 
 .resume .education-section .education-timeline .timeline-track {
   position: relative;
-  padding-left: 2.5rem;
+  --timeline-y: 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(260px, 1fr));
+  gap: 1.5rem;
+  min-width: 820px;
+  padding-top: 5rem;
+}
+
+.resume .education-section .education-timeline {
+  overflow-x: auto;
+  padding: 0.5rem 0 1rem;
 }
 
 .resume .education-section .education-timeline .timeline-track::before {
   content: "";
   position: absolute;
-  left: 10px;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: linear-gradient(180deg, var(--accent-color), color-mix(in srgb, var(--accent-color), transparent 50%));
+  top: var(--timeline-y);
+  left: 8%;
+  right: 8%;
+  height: 3px;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--accent-color), transparent 45%), var(--accent-color), color-mix(in srgb, var(--accent-color), transparent 45%));
+  border-radius: 999px;
 }
 
 .resume .education-section .education-timeline .timeline-track .timeline-item {
   position: relative;
-  margin-bottom: 3rem;
-}
-
-.resume .education-section .education-timeline .timeline-track .timeline-item:last-child {
-  margin-bottom: 0;
 }
 
 .resume .education-section .education-timeline .timeline-track .timeline-item .timeline-marker {
   position: absolute;
-  left: -3.5rem;
-  top: 0;
+  left: 50%;
+  top: calc((5rem - var(--timeline-y)) * -1 - 25px);
   width: 50px;
   height: 50px;
   background: linear-gradient(135deg, var(--accent-color), color-mix(in srgb, var(--accent-color), #6c5ce7 20%));
@@ -1555,6 +1624,8 @@ section,
   justify-content: center;
   border: 4px solid var(--background-color);
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-color), transparent 80%);
+  transform: translateX(-50%);
+  z-index: 2;
 }
 
 .resume .education-section .education-timeline .timeline-track .timeline-item .timeline-marker i {
@@ -1571,7 +1642,7 @@ section,
 }
 
 .resume .education-section .education-timeline .timeline-track .timeline-item .timeline-content:hover {
-  transform: translateX(5px);
+  transform: translateY(-5px);
   border-color: color-mix(in srgb, var(--accent-color), transparent 80%);
   box-shadow: 0 10px 30px color-mix(in srgb, var(--default-color), transparent 90%);
 }
@@ -1683,6 +1754,11 @@ section,
     margin-bottom: 3rem;
   }
 
+  .resume .experience-section .experience-cards .experience-item .timeline-marker {
+    width: 45px;
+    height: 45px;
+  }
+
   .resume .education-timeline .timeline-track .timeline-item .timeline-marker {
     width: 45px;
     height: 45px;
@@ -1702,27 +1778,28 @@ section,
     padding: 1.5rem;
   }
 
-  .resume .experience-section .experience-cards .exp-card .card-header .company-logo {
-    width: 45px;
-    height: 45px;
-  }
-
-  .resume .experience-section .experience-cards .exp-card .card-header .company-logo i {
-    font-size: 1.2rem;
-  }
-
-  .resume .education-section .education-timeline .timeline-track {
+  .resume .experience-section .experience-timeline {
     padding-left: 2rem;
   }
 
-  .resume .education-section .education-timeline .timeline-track::before {
-    left: 20px;
+  .resume .experience-section .experience-cards::before {
+    left: -1rem;
   }
 
-  .resume .education-section .education-timeline .timeline-track .timeline-item .timeline-marker {
+  .resume .experience-section .experience-cards .experience-item .timeline-marker {
     left: -2.3rem;
     width: 40px;
     height: 40px;
+  }
+
+  .resume .experience-section .experience-cards .experience-item .timeline-marker i {
+    font-size: 1rem;
+  }
+
+  .resume .education-section .education-timeline .timeline-track .timeline-item .timeline-marker {
+    width: 40px;
+    height: 40px;
+    top: calc((5rem - var(--timeline-y)) * -1 - 20px);
   }
 
   .resume .education-section .education-timeline .timeline-track .timeline-item .timeline-marker i {
@@ -1746,12 +1823,6 @@ section,
 
   .resume .experience-section .experience-cards .exp-card {
     padding: 1.2rem;
-  }
-
-  .resume .experience-section .experience-cards .exp-card .card-header {
-    flex-direction: column;
-    gap: 1rem;
-    text-align: center;
   }
 
   .resume .education-section .education-timeline .timeline-track .timeline-item .timeline-content {
