@@ -53,6 +53,28 @@
   --surface-color: #132142;
 }
 
+body.light-theme {
+  --background-color: #ffffff;
+  --default-color: #151922;
+  --heading-color: #0b1020;
+  --accent-color: #315fdd;
+  --surface-color: #f5f7fb;
+  --contrast-color: #ffffff;
+  --nav-color: #151922;
+  --nav-hover-color: #315fdd;
+  --nav-mobile-background-color: #ffffff;
+  --nav-dropdown-background-color: #ffffff;
+  --nav-dropdown-color: #151922;
+  --nav-dropdown-hover-color: #315fdd;
+}
+
+body.light-theme .dark-background {
+  --background-color: #ffffff;
+  --default-color: #151922;
+  --heading-color: #0b1020;
+  --surface-color: #f5f7fb;
+}
+
 /* Smooth scroll */
 :root {
   scroll-behavior: smooth;
@@ -188,6 +210,10 @@ h6 {
   z-index: 997;
 }
 
+body.light-theme .header {
+  --heading-color: #0b1020;
+}
+
 .header .logo {
   line-height: 1;
 }
@@ -221,6 +247,32 @@ h6 {
   background: color-mix(in srgb, var(--accent-color), transparent 15%);
 }
 
+.header .theme-toggle {
+  width: 42px;
+  height: 42px;
+  margin-left: 14px;
+  border: 1px solid color-mix(in srgb, var(--nav-color), transparent 72%);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--surface-color), transparent 20%);
+  color: var(--nav-color);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+}
+
+.header .theme-toggle i {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.header .theme-toggle:hover,
+.header .theme-toggle:focus {
+  color: var(--contrast-color);
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
 @media (max-width: 1200px) {
   .header .logo {
     order: 1;
@@ -232,8 +284,14 @@ h6 {
     padding: 6px 15px;
   }
 
-  .header .navmenu {
+  .header .theme-toggle {
     order: 3;
+    margin-left: 0;
+    margin-right: 12px;
+  }
+
+  .header .navmenu {
+    order: 4;
   }
 }
 
@@ -247,6 +305,10 @@ h6 {
   --background-color: rgba(9, 17, 44, 0.88);
 }
 
+body.light-theme.scrolled .header {
+  --background-color: rgba(255, 255, 255, 0.92);
+}
+
 /* Index Page Header
 ------------------------------*/
 .index-page .header {
@@ -257,6 +319,10 @@ h6 {
 ------------------------------*/
 .index-page.scrolled .header {
   --background-color: rgba(9, 17, 44, 0.88);
+}
+
+body.light-theme.index-page.scrolled .header {
+  --background-color: rgba(255, 255, 255, 0.92);
 }
 
 /*--------------------------------------------------------------

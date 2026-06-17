@@ -23,6 +23,33 @@
   window.addEventListener('load', toggleScrolled);
 
   /**
+   * Theme toggle
+   */
+  const themeToggle = document.querySelector('.theme-toggle');
+
+  function applyTheme(theme) {
+    const isLight = theme === 'light';
+    document.body.classList.toggle('light-theme', isLight);
+
+    if (themeToggle) {
+      themeToggle.setAttribute('aria-pressed', isLight ? 'true' : 'false');
+      themeToggle.setAttribute('aria-label', isLight ? 'Switch to blue theme' : 'Switch to light theme');
+      themeToggle.innerHTML = `<i class="bi ${isLight ? 'bi-moon-stars' : 'bi-sun'}"></i>`;
+    }
+  }
+
+  const savedTheme = localStorage.getItem('portfolio-theme') || 'blue';
+  applyTheme(savedTheme);
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const nextTheme = document.body.classList.contains('light-theme') ? 'blue' : 'light';
+      localStorage.setItem('portfolio-theme', nextTheme);
+      applyTheme(nextTheme);
+    });
+  }
+
+  /**
    * Mobile nav toggle
    */
   const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
