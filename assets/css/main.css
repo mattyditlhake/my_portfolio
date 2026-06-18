@@ -2015,10 +2015,43 @@ section,
   margin-bottom: 20px;
 }
 
+.services .expandable-text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+}
+
+.services .expandable-text.is-expanded {
+  display: block;
+  -webkit-line-clamp: unset;
+  line-clamp: unset;
+  overflow: visible;
+}
+
+.services .expand-text-toggle {
+  border: 0;
+  background: transparent;
+  color: var(--accent-color);
+  display: flex;
+  padding: 0;
+  margin: -8px auto 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.services .expand-text-toggle:hover,
+.services .expand-text-toggle:focus {
+  color: color-mix(in srgb, var(--accent-color), transparent 25%);
+}
+
 .services .read-more {
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  width: fit-content;
   color: var(--heading-color);
   font-weight: 600;
   font-size: 14px;

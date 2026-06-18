@@ -38,16 +38,40 @@
     }
   }
 
-  const savedTheme = localStorage.getItem('portfolio-theme') || 'blue';
+  let savedTheme = 'blue';
+  try {
+    savedTheme = localStorage.getItem('portfolio-theme') || 'blue';
+  } catch (error) {
+    savedTheme = 'blue';
+  }
   applyTheme(savedTheme);
 
   if (themeToggle) {
     themeToggle.addEventListener('click', () => {
       const nextTheme = document.body.classList.contains('light-theme') ? 'blue' : 'light';
-      localStorage.setItem('portfolio-theme', nextTheme);
+      try {
+        localStorage.setItem('portfolio-theme', nextTheme);
+      } catch (error) {
+        // Keep theme switching available even when browser storage is blocked.
+      }
       applyTheme(nextTheme);
     });
   }
+
+  /**
+   * Expand collapsed service descriptions
+   */
+  document.querySelectorAll('.expand-text-toggle').forEach((button) => {
+    button.addEventListener('click', () => {
+      const targetId = button.getAttribute('aria-controls');
+      const text = document.getElementById(targetId);
+      if (!text) return;
+
+      const isExpanded = text.classList.toggle('is-expanded');
+      button.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+      button.textContent = isExpanded ? 'Show less' : 'Show more';
+    });
+  });
 
   /**
    * Mobile nav toggle
