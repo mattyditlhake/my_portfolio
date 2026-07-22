@@ -34,7 +34,11 @@ module.exports = async function handler(req, res) {
 
     res.status(200).send('OK');
   } catch (error) {
-    console.error('Contact form error:', error);
-    res.status(500).send('Unable to send message right now.');
-  }
+  console.error(error);
+
+  res.status(500).json({
+    message: error.message,
+    stack: process.env.NODE_ENV !== "production" ? error.stack : undefined
+  });
+}
 };
