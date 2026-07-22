@@ -1,15 +1,15 @@
-import { createTransport } from 'nodemailer';
+const { createTransport } = require('nodemailer');
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
-    res.status(405).json({ ok: false, error: 'Method not allowed' });
+    res.status(405).send('Method not allowed');
     return;
   }
 
   const { name, email, subject, message } = req.body || {};
 
   if (!name || !email || !subject || !message) {
-    res.status(400).json({ ok: false, error: 'Please complete all required fields.' });
+    res.status(400).send('Please complete all required fields.');
     return;
   }
 
@@ -32,9 +32,9 @@ export default async function handler(req, res) {
       text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
     });
 
-    res.status(200).json({ ok: true });
+    res.status(200).send('OK');
   } catch (error) {
     console.error('Contact form error:', error);
-    res.status(500).json({ ok: false, error: 'Unable to send message right now.' });
+    res.status(500).send('Unable to send message right now.');
   }
-}
+};
