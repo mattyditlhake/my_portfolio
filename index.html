@@ -1091,11 +1091,7 @@
               </div>
               <div>
                 <h3>Address</h3>
-                <p class="reveal-on-hover" tabindex="0" aria-label="Phone number hidden. Hover or focus to reveal.">
-                  <span class="reveal-placeholder">••• ••••••• •••• •• •••••• </span>
-                  <span class="reveal-value">305 Atkinson House  28 Albert Street  Marshall Town Johannesburg 2188 </span>
-                </p>
-                <!-- <p>2847 Oak Street, San Francisco, CA 94102</p> -->
+                <p>305 Atkinson House, 28 Albert Street, Marshall Town, Johannesburg 2188</p>
               </div>
             </div>
 
@@ -1105,10 +1101,7 @@
               </div>
               <div>
                 <h3>Call Me</h3>
-                <p class="reveal-on-hover" tabindex="0" aria-label="Phone number hidden. Hover or focus to reveal.">
-                  <span class="reveal-placeholder">••• ••• ••••</span>
-                  <span class="reveal-value">081 234 5678</span>
-                </p>
+                <p><a href="tel:+27812345678">081 234 5678</a></p>
               </div>
             </div>
 
@@ -1118,17 +1111,14 @@
               </div>
               <div>
                 <h3>Email Me</h3>
-                <p class="reveal-on-hover" tabindex="0" aria-label="Email address hidden. Hover or focus to reveal.">
-                  <span class="reveal-placeholder">••••••••••••••••••••</span>
-                  <span class="reveal-value">matty.ditlhake@gmail.com</span>
-                </p>
+                <p><a href="mailto:matty.ditlhake@gmail.com">matty.ditlhake@gmail.com</a></p>
               </div>
             </div>
 
           </div>
 
           <div class="col-lg-8">
-            <form action="forms/contact.php" method="post" class="php-email-form">
+            <form action="/api/contact" method="post" class="php-email-form" data-fallback-email="matty.ditlhake@gmail.com">
               <div class="row gy-4">
 
                 <div class="col-md-6">

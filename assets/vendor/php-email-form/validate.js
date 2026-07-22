@@ -72,8 +72,37 @@
       }
     })
     .catch((error) => {
-      displayError(thisForm, error);
+      const fallbackEmail = thisForm.getAttribute('data-fallback-email') || 'matty.ditlhake@gmail.com';
+      const fallbackUrl = buildMailtoFallback(thisForm, fallbackEmail);
+      if (fallbackUrl) {
+        thisForm.querySelector('.loading').classList.remove('d-block');
+        thisForm.querySelector('.sent-message').classList.add('d-block');
+        window.location.href = fallbackUrl;
+        thisForm.reset();
+      } else {
+        displayError(thisForm, error);
+      }
     });
+  }
+
+  function buildMailtoFallback(thisForm, fallbackEmail) {
+    const formData = new FormData(thisForm);
+    const name = (formData.get('name') || '').toString().trim();
+    const email = (formData.get('email') || '').toString().trim();
+    const subject = (formData.get('subject') || '').toString().trim();
+    const message = (formData.get('message') || '').toString().trim();
+
+    if (!name && !email && !subject && !message) {
+      return null;
+    }
+
+    const params = new URLSearchParams({
+      to: fallbackEmail,
+      subject: subject || 'Portfolio contact',
+      body: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
+    });
+
+    return `mailto:${fallbackEmail}?${params.toString()}`;
   }
 
   function displayError(thisForm, error) {

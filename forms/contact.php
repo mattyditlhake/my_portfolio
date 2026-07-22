@@ -10,6 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 $receiving_email_address = 'matty.ditlhake@gmail.com';
+$log_path = __DIR__ . '/contact_messages.log';
 
 function field(string $name): string {
   return trim((string) ($_POST[$name] ?? ''));
@@ -53,10 +54,21 @@ $headers = [
 
 $sent = mail($receiving_email_address, $safe_subject, $body, implode("\r\n", $headers));
 
-if (!$sent) {
-  http_response_code(500);
-  echo 'The message could not be sent. Please email me directly at ' . $receiving_email_address . '.';
+if ($sent) {
+  echo 'OK';
   exit;
 }
 
-echo 'OK';
+$entry = '[' . date('c') . '] From: ' . $clean_name . ' <' . $email . '>' . PHP_EOL;
+$entry .= 'Subject: ' . $clean_subject . PHP_EOL;
+$entry .= 'Message:' . PHP_EOL . $message . PHP_EOL . '---' . PHP_EOL;
+
+$logged = @file_put_contents($log_path, $entry, FILE_APPEND | LOCK_EX);
+
+if ($logged !== false) {
+  echo 'OK';
+  exit;
+}
+
+http_response_code(500);
+echo 'The message could not be sent. Please email me directly at ' . $receiving_email_address . '.';
