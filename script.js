@@ -1,3 +1,4 @@
+console.log("script.js loaded");
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector(".php-email-form");
 
