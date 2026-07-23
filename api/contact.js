@@ -1,3 +1,11 @@
+console.log({
+  SMTP_HOST: process.env.SMTP_HOST,
+  SMTP_PORT: process.env.SMTP_PORT,
+  SMTP_USER: process.env.SMTP_USER ? "Loaded" : "Missing",
+  SMTP_PASS: process.env.SMTP_PASS ? "Loaded" : "Missing",
+  RECEIVER_EMAIL: process.env.RECEIVER_EMAIL,
+});
+
 const { createTransport } = require('nodemailer');
 
 module.exports = async function handler(req, res) {
@@ -34,7 +42,11 @@ module.exports = async function handler(req, res) {
 
     res.status(200).send('OK');
   } catch (error) {
-    console.error('Contact form error:', error);
-    res.status(500).send('Unable to send message right now.');
-  }
+  console.error(error);
+
+  res.status(500).json({
+    message: error.message,
+    stack: process.env.NODE_ENV !== "production" ? error.stack : undefined
+  });
+}
 };
