@@ -26,6 +26,7 @@
       thisForm.querySelector('.sent-message').classList.remove('d-block');
 
       let formData = new FormData( thisForm );
+      let payload = Object.fromEntries(formData.entries());
 
       if ( recaptcha ) {
         if(typeof grecaptcha !== "undefined" ) {
@@ -33,8 +34,8 @@
             try {
               grecaptcha.execute(recaptcha, {action: 'php_email_form_submit'})
               .then(token => {
-                formData.set('recaptcha-response', token);
-                php_email_form_submit(thisForm, action, formData);
+                payload['recaptcha-response'] = token;
+                php_email_form_submit(thisForm, action, payload);
               })
             } catch(error) {
               displayError(thisForm, error);
@@ -44,16 +45,19 @@
           displayError(thisForm, 'The reCaptcha javascript API url is not loaded!')
         }
       } else {
-        php_email_form_submit(thisForm, action, formData);
+        php_email_form_submit(thisForm, action, payload);
       }
     });
   });
 
-  function php_email_form_submit(thisForm, action, formData) {
+  function php_email_form_submit(thisForm, action, data) {
     fetch(action, {
       method: 'POST',
-      body: formData,
-      headers: {'X-Requested-With': 'XMLHttpRequest'}
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
+      }
     })
     .then(response => {
       if( response.ok ) {
@@ -72,37 +76,8 @@
       }
     })
     .catch((error) => {
-      const fallbackEmail = thisForm.getAttribute('data-fallback-email') || 'matty.ditlhake@gmail.com';
-      const fallbackUrl = buildMailtoFallback(thisForm, fallbackEmail);
-      if (fallbackUrl) {
-        thisForm.querySelector('.loading').classList.remove('d-block');
-        thisForm.querySelector('.sent-message').classList.add('d-block');
-        window.location.href = fallbackUrl;
-        thisForm.reset();
-      } else {
-        displayError(thisForm, error);
-      }
+      displayError(thisForm, error);
     });
-  }
-
-  function buildMailtoFallback(thisForm, fallbackEmail) {
-    const formData = new FormData(thisForm);
-    const name = (formData.get('name') || '').toString().trim();
-    const email = (formData.get('email') || '').toString().trim();
-    const subject = (formData.get('subject') || '').toString().trim();
-    const message = (formData.get('message') || '').toString().trim();
-
-    if (!name && !email && !subject && !message) {
-      return null;
-    }
-
-    const params = new URLSearchParams({
-      to: fallbackEmail,
-      subject: subject || 'Portfolio contact',
-      body: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
-    });
-
-    return `mailto:${fallbackEmail}?${params.toString()}`;
   }
 
   function displayError(thisForm, error) {
