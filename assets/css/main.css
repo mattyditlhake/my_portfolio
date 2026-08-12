@@ -2393,6 +2393,86 @@ section,
 }
 
 /*--------------------------------------------------------------
+# Visitor Counter Section
+--------------------------------------------------------------*/
+.visitor-counter .visitor-counter-card {
+  background: linear-gradient(135deg, color-mix(in srgb, var(--accent-color), white 88%) 0%, var(--surface-color) 100%);
+  border: 1px solid color-mix(in srgb, var(--accent-color), transparent 75%);
+  border-radius: 24px;
+  padding: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  box-shadow: 0 18px 45px color-mix(in srgb, var(--default-color), transparent 88%);
+}
+
+.visitor-counter .visitor-counter-copy .subtitle {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-color);
+  margin-bottom: 14px;
+}
+
+.visitor-counter .visitor-counter-copy h2 {
+  margin-bottom: 12px;
+  font-size: 34px;
+}
+
+.visitor-counter .visitor-counter-copy p {
+  margin: 0;
+  max-width: 560px;
+  color: color-mix(in srgb, var(--default-color), transparent 20%);
+}
+
+.visitor-counter .visitor-counter-number {
+  min-width: 220px;
+  text-align: center;
+  background: var(--surface-color);
+  border-radius: 20px;
+  padding: 28px 24px;
+  border: 1px solid color-mix(in srgb, var(--accent-color), transparent 82%);
+}
+
+.visitor-counter .visitor-counter-number span {
+  display: block;
+  font-size: 46px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--heading-color);
+}
+
+.visitor-counter .visitor-counter-number small {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--default-color), transparent 35%);
+}
+
+@media (max-width: 768px) {
+  .visitor-counter .visitor-counter-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 32px 24px;
+  }
+
+  .visitor-counter .visitor-counter-copy h2 {
+    font-size: 28px;
+  }
+
+  .visitor-counter .visitor-counter-number {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+/*--------------------------------------------------------------
 # Contact Section
 --------------------------------------------------------------*/
 .contact .info-item {
