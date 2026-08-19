@@ -1,0 +1,6 @@
+import requests
+
+token = "EAALujlNKOIsBRRDAZAex5rDY6E2L5wn0SnZA9kf0wXsyRz72ewPtxZAGgaIDnXpygXhOZAZC3eazBeFkYGZBeS7R2eLfE0vCxJFr4GM7HHLzsL2sSntkS1TJll9orB1ZBB9LZANycSumSe3kPtM0G00YlAoeVH3VtoPt1XLHHWawJe59006qnzl5qU5dZA0tEhDZBFcA67Gas1tTph3ZA4aPxpZCPkQYBCqWy4VqZCZBy5NkOVyZArkxB30gnZAo1gUm"
+
+url = f"https://graph.facebook.com/v24.0/me?access_token={token}"
+print(requests.get(url).json())
