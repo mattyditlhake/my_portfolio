@@ -2402,9 +2402,15 @@ section,
   padding: 42px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 32px;
+  justify-content: center;
+  gap: 16px;
+  /* stack copy above number on all screen sizes */
+  flex-direction: column;
   box-shadow: 0 18px 45px color-mix(in srgb, var(--default-color), transparent 88%);
+
+  /* center the card within its container */
+  max-width: 980px;
+  margin: 0 auto;
 }
 
 .visitor-counter .visitor-counter-copy .subtitle {
@@ -2429,12 +2435,15 @@ section,
 }
 
 .visitor-counter .visitor-counter-number {
-  min-width: 220px;
+  min-width: auto;
+  width: 100%;
+  max-width: 360px;
   text-align: center;
   background: var(--surface-color);
   border-radius: 20px;
   padding: 28px 24px;
   border: 1px solid color-mix(in srgb, var(--accent-color), transparent 82%);
+  margin-top: 8px;
 }
 
 .visitor-counter .visitor-counter-number span {
