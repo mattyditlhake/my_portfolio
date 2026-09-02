@@ -21,9 +21,13 @@ from fastapi.staticfiles import StaticFiles
 from dotenv import load_dotenv
 
 # === Import existing uploaders from the project ===
-from uploaders.facebook_uploader import FacebookUploader
-from uploaders.youtube_uploader import YouTubeUploader
-from uploaders.tiktok_uploader import TikTokUploader
+from video_automation.uploaders.facebook_uploader import FacebookUploader
+from video_automation.uploaders.youtube_uploader import YouTubeUploader
+from video_automation.uploaders.tiktok_uploader import TikTokUploader
+#from video_automation.uploaders.facebook_uploader import FacebookUploader
+#from video_automation.uploaders.youtube_uploader import YouTubeUploader
+#from video_automation.uploaders.tiktok_uploader import TikTokUploader
+
 
 # === Load environment variables ===
 load_dotenv()
@@ -43,8 +47,9 @@ UPLOADERS = {
 }
 
 # === Create temporary upload directory if it doesn't exist ===
-UPLOAD_DIR = Path("./temp_uploads")
-UPLOAD_DIR.mkdir(exist_ok=True)
+BASE_DIR = Path(__file__).resolve().parent
+UPLOAD_DIR = BASE_DIR / "temp_uploads"
+UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 logger.info(f"Upload directory: {UPLOAD_DIR.absolute()}")
 
 

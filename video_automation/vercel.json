@@ -2,14 +2,22 @@
   "version": 2,
   "builds": [
     {
-      "src": "api.py",
+      "src": "api/contact.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "video_automation/api.py",
       "use": "@vercel/python"
     }
   ],
   "routes": [
     {
-      "src": "/(.*)",
-      "dest": "api.py"
+      "src": "/api/contact",
+      "dest": "api/contact.js"
+    },
+    {
+      "src": "/video-automation/(.*)",
+      "dest": "video_automation/api.py"
     }
   ]
 }
