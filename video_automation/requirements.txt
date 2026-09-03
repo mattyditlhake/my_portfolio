@@ -1,0 +1,10 @@
+python-dotenv
+requests
+google-api-python-client
+google-auth-oauthlib
+PyYAML
+# === NEW: FastAPI UI Dependencies ===
+fastapi
+uvicorn
+python-multipart
+aiofiles
