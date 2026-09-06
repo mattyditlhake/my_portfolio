@@ -73,6 +73,9 @@ HTML_TEMPLATE = """
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Poster - Multi-Platform Upload</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700;800&family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --background-color: #071127;
@@ -94,7 +97,7 @@ HTML_TEMPLATE = """
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Roboto', sans-serif;
             background: radial-gradient(circle at top right, rgba(76, 123, 253, 0.2), transparent 38%), var(--background-color);
             color: var(--default-color);
             min-height: 100vh;
@@ -102,16 +105,17 @@ HTML_TEMPLATE = """
         }
         
         .container {
-            max-width: 900px;
+            max-width: 1080px;
             margin: 0 auto;
             background: var(--surface-color);
             border: 1px solid var(--border-color);
             border-radius: 12px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
-            padding: 40px;
+            padding: clamp(24px, 4vw, 48px);
         }
         
         h1 {
+            font-family: 'Mulish', sans-serif;
             color: var(--heading-color);
             margin-bottom: 10px;
             text-align: center;
@@ -130,6 +134,7 @@ HTML_TEMPLATE = """
         }
         
         .section-title {
+            font-family: 'Mulish', sans-serif;
             font-size: 18px;
             font-weight: 600;
             color: var(--heading-color);
@@ -258,8 +263,8 @@ HTML_TEMPLATE = """
         }
         
         .btn-submit {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            background: var(--accent-color);
+            color: var(--contrast-color);
             padding: 14px 40px;
             flex: 1;
             max-width: 300px;
@@ -267,7 +272,7 @@ HTML_TEMPLATE = """
         
         .btn-submit:hover:not(:disabled) {
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 10px 20px rgba(76, 123, 253, 0.3);
         }
         
         .btn-submit:disabled {
@@ -276,12 +281,13 @@ HTML_TEMPLATE = """
         }
         
         .btn-reset {
-            background: #ddd;
-            color: #333;
+            background: var(--surface-raised);
+            color: var(--default-color);
+            border: 1px solid var(--border-color);
         }
         
         .btn-reset:hover {
-            background: #ccc;
+            background: rgba(76, 123, 253, 0.16);
         }
         
         /* === Status Messages === */
@@ -297,21 +303,21 @@ HTML_TEMPLATE = """
         }
         
         .status.success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
+            background: rgba(5, 150, 82, 0.16);
+            color: #a7efc5;
+            border: 1px solid rgba(5, 150, 82, 0.5);
         }
         
         .status.error {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
+            background: rgba(223, 21, 41, 0.16);
+            color: #ffb4bd;
+            border: 1px solid rgba(223, 21, 41, 0.5);
         }
         
         .status.info {
-            background: #d1ecf1;
-            color: #0c5460;
-            border: 1px solid #bee5eb;
+            background: rgba(76, 123, 253, 0.14);
+            color: var(--default-color);
+            border: 1px solid var(--border-color);
         }
         
         .status.loading {
@@ -321,9 +327,9 @@ HTML_TEMPLATE = """
         }
         
         .spinner {
-            border: 3px solid rgba(0,0,0,0.1);
+            border: 3px solid rgba(217, 228, 255, 0.2);
             border-radius: 50%;
-            border-top: 3px solid #667eea;
+            border-top: 3px solid var(--accent-hover);
             width: 20px;
             height: 20px;
             animation: spin 0.8s linear infinite;
@@ -336,17 +342,17 @@ HTML_TEMPLATE = """
         
         /* === Platform-specific styling === */
         .platform-info {
-            background: #f9f9f9;
+            background: rgba(19, 33, 66, 0.72);
             padding: 15px;
-            border-left: 4px solid #667eea;
+            border-left: 4px solid var(--accent-color);
             border-radius: 4px;
             margin-bottom: 20px;
             font-size: 14px;
-            color: #666;
+            color: var(--muted-color);
         }
         
         .required {
-            color: #e74c3c;
+            color: #ff8f9b;
         }
     </style>
 </head>
