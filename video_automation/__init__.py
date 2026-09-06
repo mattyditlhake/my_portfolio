@@ -1,0 +1,1 @@
+"""Video automation application package."""

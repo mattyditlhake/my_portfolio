@@ -1,9 +1,13 @@
 {
   "version": 2,
-  "routes": [
+  "rewrites": [
     {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
+      "source": "/video_automation",
+      "destination": "/api/video_automation"
+    },
+    {
+      "source": "/video_automation/:path*",
+      "destination": "/api/video_automation/:path*"
     }
   ]
 }

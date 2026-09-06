@@ -48,7 +48,8 @@ UPLOADERS = {
 }
 
 # === Create temporary upload directory if it doesn't exist ===
-UPLOAD_DIR = Path("./temp_uploads")
+# Vercel only guarantees writes under the temporary directory.
+UPLOAD_DIR = Path(os.getenv("TMPDIR", "/tmp")) / "video_automation_uploads"
 UPLOAD_DIR.mkdir(exist_ok=True)
 logger.info(f"Upload directory: {UPLOAD_DIR.absolute()}")
 
@@ -528,7 +529,7 @@ HTML_TEMPLATE = """
                 showStatusWithSpinner('Uploading to ' + Array.from(selectedPlatforms).join(', ') + '...');
                 
                 // === Send form data to backend endpoint ===
-                const response = await fetch('/api/upload', {
+                const response = await fetch('/video_automation/api/upload', {
                     method: 'POST',
                     body: formData
                 });
