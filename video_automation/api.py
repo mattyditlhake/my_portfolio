@@ -40,6 +40,17 @@ logger = logging.getLogger(__name__)
 # === Initialize FastAPI app ===
 app = FastAPI(title="Video Poster UI", version="1.0.0")
 
+
+@app.middleware("http")
+async def strip_vercel_prefix(request, call_next):
+    """Expose the app at both the direct function URL and the portfolio URL."""
+    path = request.scope["path"]
+    for prefix in ("/video_automation", "/api/video_automation"):
+        if path == prefix or path.startswith(prefix + "/"):
+            request.scope["path"] = path[len(prefix):] or "/"
+            break
+    return await call_next(request)
+
 # === Configuration: Map platform names to uploader classes ===
 UPLOADERS = {
     'facebook': FacebookUploader,
