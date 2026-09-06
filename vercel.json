@@ -7,7 +7,7 @@
     },
     {
       "source": "/video_automation/:path*",
-      "destination": "/api/video_automation/:path*"
+      "destination": "/api/video_automation"
     }
   ]
 }
