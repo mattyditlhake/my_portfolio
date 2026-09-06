@@ -74,6 +74,19 @@ HTML_TEMPLATE = """
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Poster - Multi-Platform Upload</title>
     <style>
+        :root {
+            --background-color: #071127;
+            --surface-color: #0f1a37;
+            --surface-raised: #132142;
+            --default-color: #d9e4ff;
+            --heading-color: #f3f7ff;
+            --accent-color: #4c7bfd;
+            --accent-hover: #82a2ff;
+            --contrast-color: #ffffff;
+            --border-color: rgba(130, 162, 255, 0.24);
+            --muted-color: #9fb0d6;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -82,7 +95,8 @@ HTML_TEMPLATE = """
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: radial-gradient(circle at top right, rgba(76, 123, 253, 0.2), transparent 38%), var(--background-color);
+            color: var(--default-color);
             min-height: 100vh;
             padding: 20px;
         }
@@ -90,20 +104,21 @@ HTML_TEMPLATE = """
         .container {
             max-width: 900px;
             margin: 0 auto;
-            background: white;
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
             border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
             padding: 40px;
         }
         
         h1 {
-            color: #333;
+            color: var(--heading-color);
             margin-bottom: 10px;
             text-align: center;
         }
         
         .subtitle {
-            color: #666;
+            color: var(--muted-color);
             text-align: center;
             margin-bottom: 30px;
             font-size: 14px;
@@ -117,9 +132,9 @@ HTML_TEMPLATE = """
         .section-title {
             font-size: 18px;
             font-weight: 600;
-            color: #333;
+            color: var(--heading-color);
             margin-bottom: 15px;
-            border-bottom: 2px solid #667eea;
+            border-bottom: 2px solid var(--accent-color);
             padding-bottom: 10px;
         }
         
@@ -133,27 +148,27 @@ HTML_TEMPLATE = """
         /* === Platform Selection Buttons === */
         .platform-btn {
             padding: 15px;
-            border: 2px solid #ddd;
+            border: 2px solid var(--border-color);
             border-radius: 8px;
-            background: white;
+            background: var(--surface-raised);
             cursor: pointer;
             font-size: 16px;
             font-weight: 600;
             transition: all 0.3s ease;
-            color: #333;
+            color: var(--default-color);
         }
         
         .platform-btn:hover {
-            border-color: #667eea;
-            background: #f0f4ff;
+            border-color: var(--accent-hover);
+            background: rgba(76, 123, 253, 0.16);
             transform: translateY(-2px);
         }
         
         .platform-btn.active {
-            background: #667eea;
-            color: white;
-            border-color: #667eea;
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            background: var(--accent-color);
+            color: var(--contrast-color);
+            border-color: var(--accent-color);
+            box-shadow: 0 5px 15px rgba(76, 123, 253, 0.3);
         }
         
         /* === Form Elements === */
@@ -165,7 +180,7 @@ HTML_TEMPLATE = """
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
-            color: #333;
+            color: var(--heading-color);
         }
         
         input[type="text"],
@@ -173,7 +188,9 @@ HTML_TEMPLATE = """
         textarea {
             width: 100%;
             padding: 12px;
-            border: 1px solid #ddd;
+            border: 1px solid var(--border-color);
+            background: var(--surface-raised);
+            color: var(--default-color);
             border-radius: 6px;
             font-size: 14px;
             font-family: inherit;
@@ -184,8 +201,8 @@ HTML_TEMPLATE = """
         input[type="file"]:focus,
         textarea:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            border-color: var(--accent-hover);
+            box-shadow: 0 0 0 3px rgba(76, 123, 253, 0.16);
         }
         
         textarea {
@@ -213,10 +230,11 @@ HTML_TEMPLATE = """
         
         .file-name {
             font-size: 12px;
-            color: #666;
+            color: var(--muted-color);
             margin-top: 5px;
             padding: 8px;
-            background: #f5f5f5;
+            background: rgba(7, 17, 39, 0.65);
+            border: 1px solid var(--border-color);
             border-radius: 4px;
             min-height: 20px;
         }
