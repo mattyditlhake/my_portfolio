@@ -76,6 +76,8 @@ HTML_TEMPLATE = """
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700;800&family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
     <style>
         :root {
             --background-color: #071127;
@@ -120,6 +122,11 @@ HTML_TEMPLATE = """
             margin-bottom: 10px;
             text-align: center;
         }
+
+        .title-icon {
+            color: var(--accent-hover);
+            margin-right: 8px;
+        }
         
         .subtitle {
             color: var(--muted-color);
@@ -161,6 +168,13 @@ HTML_TEMPLATE = """
             font-weight: 600;
             transition: all 0.3s ease;
             color: var(--default-color);
+        }
+
+        .platform-btn i {
+            display: block;
+            font-size: 28px;
+            line-height: 1;
+            margin-bottom: 9px;
         }
         
         .platform-btn:hover {
@@ -359,7 +373,7 @@ HTML_TEMPLATE = """
 <body>
     <div class="container">
         <!-- === Header Section === -->
-        <h1>🎬 Video Poster</h1>
+        <h1><i class="fa-solid fa-clapperboard title-icon" aria-hidden="true"></i>Video Poster</h1>
         <p class="subtitle">Upload videos to multiple social media platforms</p>
         
         <!-- === Main Form === -->
@@ -369,16 +383,20 @@ HTML_TEMPLATE = """
                 <div class="section-title">Step 1: Select Platform</div>
                 <div class="platform-grid">
                     <button type="button" class="platform-btn" id="selectAllPlatforms">
+                        <i class="bi bi-check2-square" aria-hidden="true"></i>
                         All Platforms
                     </button>
                     <button type="button" class="platform-btn" data-platform="facebook">
-                        📘 Facebook
+                        <i class="fa-brands fa-facebook" aria-hidden="true"></i>
+                        Facebook
                     </button>
                     <button type="button" class="platform-btn" data-platform="youtube">
-                        🎥 YouTube
+                        <i class="fa-brands fa-youtube" aria-hidden="true"></i>
+                        YouTube
                     </button>
                     <button type="button" class="platform-btn" data-platform="tiktok">
-                        🎵 TikTok
+                        <i class="fa-brands fa-tiktok" aria-hidden="true"></i>
+                        TikTok
                     </button>
                 </div>
                 
